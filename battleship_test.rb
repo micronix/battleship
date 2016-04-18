@@ -98,6 +98,7 @@ class BattleshipTest < Minitest::Test
     assert ship1.overlaps_with?(ship2)
     assert ship1.overlaps_with?(ship3)
     refute ship2.overlaps_with?(ship3)
+    refute ship3.overlaps_with?(ship2)
   end
 
   def test_12_ships_can_be_fired_at
