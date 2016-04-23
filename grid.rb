@@ -2,6 +2,11 @@ class Grid
     def initialize
         @ships = []
         
+        @shots = []
+        (1..10).each do |i|
+            @shots[i] = []
+        end
+        
         @letters = {}
         index = 1
         ('A'..'J').each do |y|
@@ -18,7 +23,11 @@ class Grid
             y = @letters[y]
             (1..10).each do |x|
                 if has_ship_on?(x, y)
-                    row += " O |"
+                    if fire_at?(x, y)
+                        row += " X |"
+                    else
+                        row += " O |"
+                    end
                 else
                     row += "   |"
                 end
@@ -47,5 +56,39 @@ class Grid
             end
         end
         return false
+    end
+    
+    def fire_at(x, y)
+        @shots[x][y] = true
+        @ships.each do |ship|
+            if ship.fire_at(x,y)
+                return true
+            end
+        end
+        return false
+    end
+    
+    def sunk?
+        if @ships.length == 0
+            return false
+        end
+        @ships.each do |ship|
+            if ! ship.sunk?
+                return false
+            end
+        end
+        return true
+    end
+    
+    def fire_at?(x, y)
+        @shots[x][y]
+    end
+    
+    def x_of(position)
+        position[/[0-9]+/].to_i
+    end
+    
+    def y_of(position)
+        @letters[position[/[A-J]+/]]
     end
 end
