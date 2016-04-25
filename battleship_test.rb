@@ -335,10 +335,10 @@ J |   |   |   |   |   |   |   |   |   |   |
     end
     assert_equal 2, player.ships.length
     assert_equal 5, player.ships[1].length
-    assert player.grid.has_ship_on?(1, 1)
-    assert player.grid.has_ship_on?(4, 1)
-    assert player.grid.has_ship_on?(1, 2)
-    refute player.grid.has_ship_on?(1, 3)
+    assert player.grid.has_ship_on?(1, 1) # A1
+    assert player.grid.has_ship_on?(4, 1) # A4
+    assert player.grid.has_ship_on?(1, 2) # B1
+    refute player.grid.has_ship_on?(1, 3) # C1
   end
 
 
