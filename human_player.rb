@@ -27,4 +27,10 @@ class HumanPlayer < Player
         ship = Ship.new(length)
         @grid.place_ship(ship, x, y, across)
     end
+    
+    def call_shot
+        puts "#{@name}, please enter the coordinates for your next shot (e.g. 'B10'):"
+        input = get_user_input
+        input.chomp
+    end
 end

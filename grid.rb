@@ -43,6 +43,30 @@ class Grid
         puts str
     end
     
+    def display_shots
+        str = "    1   2   3   4   5   6   7   8   9   10\n"
+        str += "  -----------------------------------------\n"
+        ('A'..'J').each do |y|
+            row = "#{y} |"
+            y = @letters[y]
+            (1..10).each do |x|
+                if fire_at?(x, y)
+                    if has_ship_on?(x, y)
+                        row += " + |"
+                    else
+                        row += " - |"
+                    end
+                else
+                    row += "   |"
+                end
+            end
+            row += "\n"
+            str += row
+        end
+        str +="  -----------------------------------------"
+        puts str
+    end
+    
     def place_ship(ship, x, y, across)
         ship.place(x,y,across)
         @ships.each do |grid_ship|

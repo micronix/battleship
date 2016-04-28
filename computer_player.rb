@@ -21,4 +21,11 @@ class ComputerPlayer < Player
         ship = Ship.new(length)
         @grid.place_ship(ship, x, y, across)
     end
+    
+    def call_shot
+        x = rand(10) + 1
+        letters = ('A'..'J').to_a
+        y = letters[rand(letters.length)]
+        "#{y}#{x}"
+    end
 end
